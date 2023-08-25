@@ -1,0 +1,9 @@
+verse:
+  - 'msg': "Misty morning, clouds in the sky"
+  - 'msg': "Without warning, the wizard walks by"
+  - 'msg': "Casting his shadow, weaving his spell"
+  - 'msg': "Long grey cloak, tinkling bell"
+chorus: 
+  - "Never Talking"
+  - "Just keeps walking"
+post_chorus: "Cursing his magic"

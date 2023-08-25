@@ -1,0 +1,122 @@
+PLAY [apply roles] *************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [role_a : What role are we executing?] ************************************
+ok: [localhost] => {
+    "msg": "We are running this task for role_a"
+}
+
+TASK [role_a : Print verse specified for this role.] ***************************
+ok: [localhost] => (item={'msg': 'Misty morning, clouds in the sky'}) => {
+    "msg": "Misty morning, clouds in the sky"
+}
+ok: [localhost] => (item={'msg': 'Without warning, the wizard walks by'}) => {
+    "msg": "Without warning, the wizard walks by"
+}
+ok: [localhost] => (item={'msg': 'Casting his shadow, weaving his spell'}) => {
+    "msg": "Casting his shadow, weaving his spell"
+}
+ok: [localhost] => (item={'msg': 'Long grey cloak, tinkling bell'}) => {
+    "msg": "Long grey cloak, tinkling bell"
+}
+
+TASK [role_a : chorus] *********************************************************
+ok: [localhost] => (item=Never Talking) => {
+    "msg": "Never Talking"
+}
+ok: [localhost] => (item=Just keeps walking) => {
+    "msg": "Just keeps walking"
+}
+
+TASK [role_a : post_chorus] ****************************************************
+ok: [localhost] => {
+    "msg": "Cursing his magic"
+}
+
+TASK [role_a : Ensure the proof folder exists] *********************************
+changed: [localhost]
+
+TASK [role_a : idempotency/proof task] *****************************************
+changed: [localhost]
+
+TASK [role_b : What role are we executing?] ************************************
+ok: [localhost] => {
+    "msg": "We are running this task for role_b"
+}
+
+TASK [role_b : Print verse specified for this role.] ***************************
+ok: [localhost] => (item={'msg': 'Evil power disappears'}) => {
+    "msg": "Evil power disappears"
+}
+ok: [localhost] => (item={'msg': 'Demons worry when the wizard is near'}) => {
+    "msg": "Demons worry when the wizard is near"
+}
+ok: [localhost] => (item={'msg': 'He turns tears into joy'}) => {
+    "msg": "He turns tears into joy"
+}
+ok: [localhost] => (item={'msg': "Everyone's happy when the wizard walks by"}) => {
+    "msg": "Everyone's happy when the wizard walks by"
+}
+
+TASK [role_b : chorus] *********************************************************
+ok: [localhost] => (item=Never Talking) => {
+    "msg": "Never Talking"
+}
+ok: [localhost] => (item=Just keeps walking) => {
+    "msg": "Just keeps walking"
+}
+
+TASK [role_b : post_chorus] ****************************************************
+ok: [localhost] => {
+    "msg": "Spreading his magic"
+}
+
+TASK [role_b : Ensure the proof folder exists] *********************************
+ok: [localhost]
+
+TASK [role_b : idempotency/proof task] *****************************************
+changed: [localhost]
+
+TASK [role_c : What role are we executing?] ************************************
+ok: [localhost] => {
+    "msg": "We are running this task for role_c"
+}
+
+TASK [role_c : Print verse specified for this role.] ***************************
+ok: [localhost] => (item={'msg': 'Sun is shining, clouds have gone by'}) => {
+    "msg": "Sun is shining, clouds have gone by"
+}
+ok: [localhost] => (item={'msg': 'All the people give a happy sigh'}) => {
+    "msg": "All the people give a happy sigh"
+}
+ok: [localhost] => (item={'msg': 'He has passed by, giving his sign'}) => {
+    "msg": "He has passed by, giving his sign"
+}
+ok: [localhost] => (item={'msg': 'Left all the people feeling so fine'}) => {
+    "msg": "Left all the people feeling so fine"
+}
+
+TASK [role_c : chorus] *********************************************************
+ok: [localhost] => (item=Never Talking) => {
+    "msg": "Never Talking"
+}
+ok: [localhost] => (item=Just keeps walking) => {
+    "msg": "Just keeps walking"
+}
+
+TASK [role_c : post_chorus] ****************************************************
+ok: [localhost] => {
+    "msg": "Spreading his magic"
+}
+
+TASK [role_c : Ensure the proof folder exists] *********************************
+ok: [localhost]
+
+TASK [role_c : idempotency/proof task] *****************************************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=19   changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+

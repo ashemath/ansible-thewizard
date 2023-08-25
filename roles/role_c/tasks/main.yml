@@ -1,0 +1,3 @@
+- name: import role_a's tasks
+  import_tasks:
+    file: "{{ playbook_dir }}/roles/role_a/tasks/main.yml"

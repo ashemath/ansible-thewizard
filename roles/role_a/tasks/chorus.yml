@@ -1,0 +1,8 @@
+- name: chorus
+  debug:
+    msg: "{{ item }}"
+  loop: "{{ chorus }}"
+
+- name: post_chorus
+  debug:
+    msg: "{{ post_chorus }}"

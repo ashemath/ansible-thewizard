@@ -1,0 +1,25 @@
+- name: What role are we executing?
+  debug: 
+    msg: "We are running this task for {{ role_name }}"
+
+- name: Print verse specified for this role.
+  debug:
+    msg: "{{ item.msg }}"
+  loop: "{{ verse }}"
+
+- name: include the chorus
+  import_tasks:
+    file: "{{ playbook_dir }}/roles/role_a/tasks/chorus.yml"
+
+- name: Ensure the proof folder exists
+  file:
+    path: "{{ playbook_dir }}/proof/"
+    state: directory
+  run_once: true
+
+- name: idempotency/proof task
+  lineinfile:
+    path: "{{ playbook_dir }}/proof/{{ role_name }}"
+    line: "{{ role_name }} was here"
+    create: yes
+

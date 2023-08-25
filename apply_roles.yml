@@ -1,0 +1,7 @@
+---
+- name: apply roles
+  hosts: localhost
+  
+  roles:
+    - role_c
+
