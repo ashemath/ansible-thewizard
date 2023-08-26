@@ -5,6 +5,28 @@ configuration.
 I wanted to create a fun context for exploring roles, so I built this
 little project that debugs Black Sabbath's "The Wizard".
 
+## Try it out:
+
+### Clone the repository:
+
+`git clone https://github.com/ashemath/ansible-thewizard`
+
+### Install ansible:
+You can install ansible in a Python venv with the provided script:
+
+`./setup_ansible`
+
+Activate your the installed venv by running `source ansible/bin/activate`
+This will add the venv's packages to your PATH variable until you run
+`deactivate`. 
+
+Alternatively, you could use system-level ansible. This project
+uses only core ansible functionality.
+
+### Run the playbook
+`ansible-playbook apply_roles.yml`
+
+
 ## The design
 ### "The Wizard"
 The song has three verses and a chorus that repeats after each verse.
@@ -73,7 +95,7 @@ The task file for role_a does most of the heavy lifting.
 It executes debug message tasks that "sing" the lyrics.
 
 I include a idempotency exercise that pulls on the `role_name` special
-variable to craft a file in a generate `proof/` folder.
+variable to craft a file in a generated `proof/` folder.
 
 `roles/role_a/tasks/main.yml`
 
@@ -346,19 +368,27 @@ localhost                  : ok=19   changed=4    unreachable=0    failed=0    s
 
 ```
 
-```
-cat results.txt | grep ok | wc
+## The Advantages of Roles
+Roles give us a mechanism for creating complex interactions between objects
+(tasks, variables, handlers, etc.) and artifacts (generated files, compiled
+software, processed data sets, etc.)
 
-28     229    1481
-```
+We divide our work into reusable chunks, so we can adapt and extend configuration: as needed, or on-demand.
 
-That's 27 total `ok`s since we wouldn't count that final line with the totals, so what counts?
-When we use a loop to interate over a number of items, that still only counts as one task executing.
+We could develop a ton of roles:
+- common: generic Debian configuration
+- xfce_desk: Configured xfce4 desktop environment
+- gnome_desk: Configured gnome desktop environment
+- nvidia: Configure nvidia GPU support.
+- python: Configure generic Python execution environment
+- pythondev: Configure python development environment
+- web: configure apache and/or nginx.
+- db_mysql: Configure MySQL database
+- db_postgre: Configure PostgreSQL 
+- apps_vscode: Configure vscode
+- apps_eclipse: Configure eclipse
+- apps_math: Configure mathematics applications
+- apps_twod: Configure 2D design software
+- apps_threed: Configure 3D design software
+- libs_ai: Configure AI development libraries
 
-The song is played in 9 distinct tasks that are configured between the three roles.
-There are 3 "What role are we executing?" tasks, one triggered by each role.
-"ensure we have a proof/" task runs three times, but the second and third run return `ok` instead of `changed`,
-so we add 2 `ok`s to our count. 
-
-
-The fact that a loop iteration isn't the same as a one-off task has consequences.
