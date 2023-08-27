@@ -16,7 +16,7 @@ You can install ansible in a Python venv with the provided script:
 
 `./setup_ansible`
 
-Activate your the installed venv by running `source ansible/bin/activate`
+Activate your the installed venv by running `source bin/activate`
 This will add the venv's packages to your PATH variable until you run
 `deactivate`. 
 
