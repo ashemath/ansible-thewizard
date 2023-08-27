@@ -5,13 +5,13 @@ configuration.
 I wanted to create a fun context for exploring roles, so I built this
 little project that debugs Black Sabbath's "The Wizard".
 
-## Try it out:
+## Try it out
 
-### Clone the repository:
+### Clone the repository
 
 `git clone https://github.com/ashemath/ansible-thewizard`
 
-### Install ansible:
+### Install ansible
 You can install ansible in a Python venv with the provided script:
 
 `./setup_ansible`
@@ -327,68 +327,36 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=19   changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  
 ```
 
-The song has 21 lines. I am curious about how ansible is counting for `ok`. 
+Let's grep the results for `"msg"`:
 
-We register 19 `ok` tasks the play. I would expect there to be more `ok` return codes. Let's grep the results for
-`ok`:
-
-`cat results.txt | grep ok`
+`cat results.txt | grep \"msg\"`
 
 ```
-cat results.txt | grep ok
-
-ok: [localhost]
-ok: [localhost] => {
-ok: [localhost] => (item={'msg': 'Misty morning, clouds in the sky'}) => {
-ok: [localhost] => (item={'msg': 'Without warning, the wizard walks by'}) => {
-ok: [localhost] => (item={'msg': 'Casting his shadow, weaving his spell'}) => {
-ok: [localhost] => (item={'msg': 'Long grey cloak, tinkling bell'}) => {
-ok: [localhost] => (item=Never Talking) => {
-ok: [localhost] => (item=Just keeps walking) => {
-ok: [localhost] => {
-ok: [localhost] => {
-ok: [localhost] => (item={'msg': 'Evil power disappears'}) => {
-ok: [localhost] => (item={'msg': 'Demons worry when the wizard is near'}) => {
-ok: [localhost] => (item={'msg': 'He turns tears into joy'}) => {
-ok: [localhost] => (item={'msg': "Everyone's happy when the wizard walks by"}) => {
-ok: [localhost] => (item=Never Talking) => {
-ok: [localhost] => (item=Just keeps walking) => {
-ok: [localhost] => {
-ok: [localhost]
-ok: [localhost] => {
-ok: [localhost] => (item={'msg': 'Sun is shining, clouds have gone by'}) => {
-ok: [localhost] => (item={'msg': 'All the people give a happy sigh'}) => {
-ok: [localhost] => (item={'msg': 'He has passed by, giving his sign'}) => {
-ok: [localhost] => (item={'msg': 'Left all the people feeling so fine'}) => {
-ok: [localhost] => (item=Never Talking) => {
-ok: [localhost] => (item=Just keeps walking) => {
-ok: [localhost] => {
-ok: [localhost]
-localhost                  : ok=19   changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+    "msg": "We are running this task for role_a"
+    "msg": "Misty morning, clouds in the sky"
+    "msg": "Without warning, the wizard walks by"
+    "msg": "Casting his shadow, weaving his spell"
+    "msg": "Long grey cloak, tinkling bell"
+    "msg": "Never Talking"
+    "msg": "Just keeps walking"
+    "msg": "Cursing his magic"
+    "msg": "We are running this task for role_b"
+    "msg": "Evil power disappears"
+    "msg": "Demons worry when the wizard is near"
+    "msg": "He turns tears into joy"
+    "msg": "Everyone's happy when the wizard walks by"
+    "msg": "Never Talking"
+    "msg": "Just keeps walking"
+    "msg": "Spreading his magic"
+    "msg": "We are running this task for role_c"
+    "msg": "Sun is shining, clouds have gone by"
+    "msg": "All the people give a happy sigh"
+    "msg": "He has passed by, giving his sign"
+    "msg": "Left all the people feeling so fine"
+    "msg": "Never Talking"
+    "msg": "Just keeps walking"
+    "msg": "Spreading his magic"
 
 ```
-
-## The Advantages of Roles
-Roles give us a mechanism for creating complex interactions between objects
-(tasks, variables, handlers, etc.) and artifacts (generated files, compiled
-software, processed data sets, etc.)
-
-We divide our work into reusable chunks, so we can adapt and extend configuration: as needed, or on-demand.
-
-We could develop a ton of roles:
-- common: generic Debian configuration
-- xfce_desk: Configured xfce4 desktop environment
-- gnome_desk: Configured gnome desktop environment
-- nvidia: Configure nvidia GPU support.
-- python: Configure generic Python execution environment
-- pythondev: Configure python development environment
-- web: configure apache and/or nginx.
-- db_mysql: Configure MySQL database
-- db_postgre: Configure PostgreSQL 
-- apps_vscode: Configure vscode
-- apps_eclipse: Configure eclipse
-- apps_math: Configure mathematics applications
-- apps_twod: Configure 2D design software
-- apps_threed: Configure 3D design software
-- libs_ai: Configure AI development libraries
+this gives us just the debug messages.
 
