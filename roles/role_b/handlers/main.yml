@@ -1,0 +1,21 @@
+- name: "Write out {{ role_name }}'s verse"
+  blockinfile:
+    path: proof/song
+    marker: ""
+    block: "{{ item.msg }}"
+    create: yes
+  loop: "{{ verse }}"
+  listen: "role_b write"
+- name: "Write out {{ role_name }}'s chorus"
+  blockinfile:
+    path: proof/song
+    marker: ""
+    block: "{{ item }}"
+  loop: "{{ chorus }}"
+  listen: "role_b write"
+- name: "Write out {{ role_name }}'s post-chorus"
+  blockinfile:
+    path: proof/song
+    marker: ""
+    block: "{{ post_chorus }}"
+  listen: "role_b write"

@@ -22,4 +22,7 @@
     path: "{{ playbook_dir }}/proof/{{ role_name }}"
     line: "{{ role_name }} was here"
     create: yes
+  notify: "{{ role_name }} write"
 
+- name: flush handlers
+  meta: flush_handlers

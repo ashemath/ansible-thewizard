@@ -1,3 +1,8 @@
 - name: import role_a's tasks
   import_tasks:
     file: "{{ playbook_dir }}/roles/role_a/tasks/main.yml"
+- name: remove blank lines
+  replace:
+    path: proof/song
+    regexp: "$^\n"
+    replace: ""
