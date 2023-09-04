@@ -360,3 +360,12 @@ Let's grep the results for `"msg"`:
 ```
 this gives us just the debug messages.
 
+## UPDATE
+I added handlers that reconstruct the song in the file `proof/song`, and I 
+added a task to `role_c/tasks/main.yml` that removes blank lines.
+
+- Use blockinfile with a `marker` set to "" in the handlers. This allows us
+  to have duplicate blocks. but we end up with blank lines.
+- Use the replace module to remove the blank lines after the last role 
+  finishes adding to the file.
+
